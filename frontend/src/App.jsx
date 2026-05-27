@@ -6,7 +6,9 @@ import {
 } from 'lucide-react';
 import './App.css';
 
-const API_URL = 'https://mohankrishna-portfolio-api.vercel.app/api';
+const API_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+  ? 'http://localhost:5000/api'
+  : 'https://mohankrishna-portfolio-api.vercel.app/api';
 
 // Custom Brand Icon SVGs as Lucide brand icons are removed in newer v1.x versions
 const Github = ({ size = 20, ...props }) => (
