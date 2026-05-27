@@ -1,6 +1,10 @@
 # 🌐 Full-Stack Personal Portfolio Website
 
-A premium, interactive personal portfolio website designed to showcase projects, skills, and academic history. The application is built using a modern full-stack architecture with a React.js client, a Node.js/Express.js REST API, and a MongoDB database, featuring an automated local file failover matrix.
+A premium, interactive personal portfolio website designed to showcase projects, skills, and academic history. The application is built using a modern full-stack architecture with a React.js client, a Node.js/Express.js REST API, and a MongoDB database.
+
+### 🔗 Live Links
+*   **Live Demo Website:** [https://mohankrishna-portfolio.vercel.app](https://mohankrishna-portfolio.vercel.app)
+*   **Live API Server:** [https://mohankrishna-portfolio-api.vercel.app/api/status](https://mohankrishna-portfolio-api.vercel.app/api/status)
 
 ---
 
