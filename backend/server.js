@@ -166,10 +166,14 @@ app.delete('/api/messages/:id', async (req, res) => {
 });
 
 // Start Server
-app.listen(PORT, () => {
-  console.log(`\n======================================================`);
-  console.log(`Backend server running in Node.js ES Module mode.`);
-  console.log(`API URL: http://localhost:${PORT}/api`);
-  console.log(`Status Check: http://localhost:${PORT}/api/status`);
-  console.log(`======================================================\n`);
-});
+if (process.env.NODE_ENV !== 'production') {
+  app.listen(PORT, () => {
+    console.log(`\n======================================================`);
+    console.log(`Backend server running in Node.js ES Module mode.`);
+    console.log(`API URL: http://localhost:${PORT}/api`);
+    console.log(`Status Check: http://localhost:${PORT}/api/status`);
+    console.log(`======================================================\n`);
+  });
+}
+
+export default app;
