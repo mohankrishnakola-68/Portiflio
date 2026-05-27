@@ -1,0 +1,24 @@
+# Node dependencies
+node_modules/
+frontend/node_modules/
+backend/node_modules/
+
+# Local database logs/files
+backend/data/*.json
+*.log
+logs/
+
+# Environment variables
+.env
+backend/.env
+frontend/.env
+
+# Production build output
+dist/
+frontend/dist/
+
+# Editor & OS files
+.DS_Store
+.vscode/
+.idea/
+Thumbs.db
