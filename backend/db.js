@@ -6,9 +6,13 @@ import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const DATA_DIR = path.join(__dirname, 'data');
+const DATA_DIR = process.env.VERCEL ? '/tmp/data' : path.join(__dirname, 'data');
 if (!fs.existsSync(DATA_DIR)) {
-  fs.mkdirSync(DATA_DIR, { recursive: true });
+  try {
+    fs.mkdirSync(DATA_DIR, { recursive: true });
+  } catch (err) {
+    console.error('Failed to create DATA_DIR:', err);
+  }
 }
 
 const fallbackFiles = {
@@ -67,18 +71,26 @@ const DEFAULT_SKILLS = [
 ];
 
 const initializeFallbackFiles = () => {
-  if (!fs.existsSync(fallbackFiles.projects)) {
-    fs.writeFileSync(fallbackFiles.projects, JSON.stringify(DEFAULT_PROJECTS, null, 2));
-  }
-  if (!fs.existsSync(fallbackFiles.skills)) {
-    fs.writeFileSync(fallbackFiles.skills, JSON.stringify(DEFAULT_SKILLS, null, 2));
-  }
-  if (!fs.existsSync(fallbackFiles.messages)) {
-    fs.writeFileSync(fallbackFiles.messages, JSON.stringify([], null, 2));
+  try {
+    if (!fs.existsSync(fallbackFiles.projects)) {
+      fs.writeFileSync(fallbackFiles.projects, JSON.stringify(DEFAULT_PROJECTS, null, 2));
+    }
+    if (!fs.existsSync(fallbackFiles.skills)) {
+      fs.writeFileSync(fallbackFiles.skills, JSON.stringify(DEFAULT_SKILLS, null, 2));
+    }
+    if (!fs.existsSync(fallbackFiles.messages)) {
+      fs.writeFileSync(fallbackFiles.messages, JSON.stringify([], null, 2));
+    }
+  } catch (err) {
+    console.error('Failed to initialize fallback files:', err);
   }
 };
 
-initializeFallbackFiles();
+try {
+  initializeFallbackFiles();
+} catch (err) {
+  console.error('Failed running initializeFallbackFiles:', err);
+}
 
 let useLocalFallback = false;
 
