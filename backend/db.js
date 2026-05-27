@@ -121,9 +121,9 @@ const MessageSchema = new mongoose.Schema({
   date: { type: Date, default: Date.now }
 });
 
-const MongoProject = mongoose.model('Project', ProjectSchema);
-const MongoSkill = mongoose.model('Skill', SkillSchema);
-const MongoMessage = mongoose.model('Message', MessageSchema);
+const MongoProject = mongoose.models.Project || mongoose.model('Project', ProjectSchema);
+const MongoSkill = mongoose.models.Skill || mongoose.model('Skill', SkillSchema);
+const MongoMessage = mongoose.models.Message || mongoose.model('Message', MessageSchema);
 
 // Connect to MongoDB
 export const connectDB = async (uri) => {
